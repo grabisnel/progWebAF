@@ -1,0 +1,21 @@
+<!-- Os totais vêm em centavos, por isso o "/ 100" -->
+<section class="resumo">
+  <div>
+    <h2 class="rotulo-saldo">Saldo atual</h2>
+    <!-- Saldo negativo fica vermelho -->
+    <p class="valor-saldo num" [class.valor-saida]="mov.saldo() < 0">
+      {{ mov.saldo() / 100 | currency: 'BRL' }}
+    </p>
+  </div>
+
+  <div class="cards">
+    <div class="cartao card card-entrada">
+      <span class="card-rotulo">Entradas</span>
+      <span class="card-valor num">+{{ mov.totalEntradas() / 100 | currency: 'BRL' }}</span>
+    </div>
+    <div class="cartao card card-saida">
+      <span class="card-rotulo">Saídas</span>
+      <span class="card-valor num">−{{ mov.totalSaidas() / 100 | currency: 'BRL' }}</span>
+    </div>
+  </div>
+</section>
