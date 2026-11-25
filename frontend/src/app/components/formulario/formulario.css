@@ -1,0 +1,77 @@
+.formulario {
+  padding: 20px;
+}
+
+.titulo {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.linha-tag {
+  display: flex;
+  gap: 8px;
+}
+
+.linha-tag select {
+  flex: 1;
+  min-width: 0;
+}
+
+.linha-tag .botao {
+  padding: 0 12px;
+}
+
+.nova-tag {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+  border: 1px dashed var(--borda-forte);
+  border-radius: var(--raio-sm);
+  background: var(--superficie-2);
+}
+
+.cores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Bolinhas de cor */
+.bolinha {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.bolinha.ativo {
+  box-shadow:
+    0 0 0 2px var(--superficie-2),
+    0 0 0 4px currentColor;
+}
+
+.bolinha:focus-visible {
+  outline-offset: 5px;
+}
+
+.acoes-tag {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 14px;
+}
+
+.adicionar {
+  width: 100%;
+  margin-top: 4px;
+}
