@@ -1,0 +1,61 @@
+.filtros {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.linha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.linha .segmentado {
+  flex: 0 1 300px;
+}
+
+.busca {
+  flex: 1 1 200px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* A cor da borda e do fundo vem da tag (definida no HTML) */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 12px;
+  border: 1px solid;
+  border-radius: 999px;
+  background: var(--superficie);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chip.ativo {
+  color: white;
+}
+
+.ponto {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.rodape {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.contador {
+  font-size: 0.8125rem;
+  color: var(--texto-suave);
+}

@@ -1,0 +1,121 @@
+<section class="cartao formulario">
+  <h2 class="titulo">Nova movimentação</h2>
+
+  <form (ngSubmit)="adicionar()">
+    <!-- Entrada / Saída -->
+    <div class="segmentado">
+      <button type="button" class="entrada" [class.ativo]="tipo === 'receita'" (click)="tipo = 'receita'">
+        Entrada
+      </button>
+      <button type="button" class="saida" [class.ativo]="tipo === 'despesa'" (click)="tipo = 'despesa'">
+        Saída
+      </button>
+    </div>
+
+    <!-- Valor -->
+    <div>
+      <label class="rotulo" for="campo-valor">Valor (R$)</label>
+      <input
+        id="campo-valor"
+        name="valor"
+        class="controle num"
+        type="text"
+        inputmode="decimal"
+        placeholder="0,00"
+        autocomplete="off"
+        [(ngModel)]="valor"
+        [class.invalido]="erroValor !== ''"
+      />
+      @if (erroValor) {
+        <p class="erro-campo">{{ erroValor }}</p>
+      }
+    </div>
+
+    <!-- Descrição -->
+    <div>
+      <label class="rotulo" for="campo-descricao">Descrição</label>
+      <input
+        id="campo-descricao"
+        name="descricao"
+        class="controle"
+        type="text"
+        maxlength="80"
+        placeholder="Ex.: Mercado da semana"
+        autocomplete="off"
+        [(ngModel)]="descricao"
+        [class.invalido]="erroDescricao !== ''"
+      />
+      @if (erroDescricao) {
+        <p class="erro-campo">{{ erroDescricao }}</p>
+      }
+    </div>
+
+    <!-- Tag -->
+    <div>
+      <label class="rotulo" for="campo-tag">Tag</label>
+      <div class="linha-tag">
+        <select id="campo-tag" name="tag" class="controle" [(ngModel)]="tag">
+          <option value="">Sem tag</option>
+          @for (t of tags.listar(); track t.nome) {
+            <option [value]="t.nome">{{ t.nome }}</option>
+          }
+        </select>
+        <button
+          type="button"
+          class="botao botao-secundario"
+          (click)="mostrandoNovaTag ? (mostrandoNovaTag = false) : abrirNovaTag()"
+        >
+          + Nova
+        </button>
+      </div>
+    </div>
+
+    <!-- Bloco para criar tag (só aparece depois de clicar em "+ Nova") -->
+    @if (mostrandoNovaTag) {
+      <div class="nova-tag">
+        <div>
+          <label class="rotulo" for="campo-nova-tag">Nome da tag</label>
+          <input
+            id="campo-nova-tag"
+            name="nomeNovaTag"
+            class="controle"
+            type="text"
+            maxlength="24"
+            placeholder="Ex.: Mercado"
+            autocomplete="off"
+            [(ngModel)]="nomeNovaTag"
+            (keydown.enter)="$event.preventDefault(); criarTag()"
+          />
+          @if (erroNovaTag) {
+            <p class="erro-campo">{{ erroNovaTag }}</p>
+          }
+        </div>
+
+        <div>
+          <span class="rotulo">Cor</span>
+          <div class="cores">
+            @for (c of cores; track c.cor) {
+              <button
+                type="button"
+                class="bolinha"
+                [style.background]="c.cor"
+                [style.color]="c.cor"
+                [class.ativo]="corNovaTag === c.cor"
+                (click)="corNovaTag = c.cor"
+              ></button>
+            }
+          </div>
+        </div>
+
+        <div class="acoes-tag">
+          <button type="button" class="botao-link" (click)="mostrandoNovaTag = false">Cancelar</button>
+          <button type="button" class="botao botao-secundario" (click)="criarTag()">Criar tag</button>
+        </div>
+      </div>
+    }
+
+    <button type="submit" class="botao adicionar" [disabled]="mov.salvando()">
+      {{ mov.salvando() ? 'Adicionando…' : 'Adicionar' }}
+    </button>
+  </form>
+</section>

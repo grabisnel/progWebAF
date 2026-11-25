@@ -1,0 +1,51 @@
+/* Fica fixo embaixo, no meio da tela */
+:host {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 10;
+  transform: translateX(-50%);
+  max-width: calc(100vw - 32px);
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 10px 10px 18px;
+  border-radius: var(--raio);
+  background: var(--primario);
+  color: var(--primario-texto);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.25);
+}
+
+.texto {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.875rem;
+}
+
+.desfazer,
+.fechar {
+  flex: none;
+  border-radius: var(--raio-sm);
+  background: transparent;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.desfazer {
+  padding: 6px 12px;
+  border: 1px solid currentColor;
+}
+
+.fechar {
+  width: 30px;
+  height: 30px;
+  border: 0;
+}
+
+button:focus-visible {
+  outline-color: currentColor;
+}

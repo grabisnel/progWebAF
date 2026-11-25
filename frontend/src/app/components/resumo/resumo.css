@@ -1,0 +1,65 @@
+.resumo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px 32px;
+}
+
+.rotulo-saldo {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--texto-suave);
+}
+
+.valor-saldo {
+  margin-top: 4px;
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 180px;
+  padding: 14px 18px;
+  border-left-width: 4px;
+}
+
+.card-rotulo {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--texto-suave);
+}
+
+.card-valor {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.card-entrada {
+  border-left-color: var(--entrada);
+  background: var(--entrada-fundo);
+}
+
+.card-entrada .card-valor {
+  color: var(--entrada);
+}
+
+.card-saida {
+  border-left-color: var(--saida);
+  background: var(--saida-fundo);
+}
+
+.card-saida .card-valor {
+  color: var(--saida);
+}

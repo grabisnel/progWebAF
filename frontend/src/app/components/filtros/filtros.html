@@ -1,0 +1,67 @@
+<div class="filtros">
+  <div class="linha">
+    <!-- Todas / Entradas / Saídas -->
+    <div class="segmentado">
+      <button type="button" [class.ativo]="filtro.tipo() === 'todas'" (click)="filtro.tipo.set('todas')">
+        Todas
+      </button>
+      <button
+        type="button"
+        class="entrada"
+        [class.ativo]="filtro.tipo() === 'receita'"
+        (click)="filtro.tipo.set('receita')"
+      >
+        Entradas
+      </button>
+      <button
+        type="button"
+        class="saida"
+        [class.ativo]="filtro.tipo() === 'despesa'"
+        (click)="filtro.tipo.set('despesa')"
+      >
+        Saídas
+      </button>
+    </div>
+
+    <!-- Busca (#campo = variável de template, como nos exercícios) -->
+    <div class="busca">
+      <input
+        #campo
+        id="campo-busca"
+        class="controle"
+        type="search"
+        placeholder="Buscar descrição"
+        autocomplete="off"
+        [value]="filtro.busca()"
+        (input)="filtro.busca.set(campo.value)"
+      />
+    </div>
+  </div>
+
+  <!-- Chips de tag (pode marcar várias; clicar de novo desmarca) -->
+  <div class="chips">
+    @for (t of tags.listarParaFiltro(); track t.nome) {
+      <button
+        type="button"
+        class="chip"
+        [style.border-color]="t.cor"
+        [style.background]="filtro.estaSelecionada(t.nome) ? t.cor : null"
+        [class.ativo]="filtro.estaSelecionada(t.nome)"
+        (click)="filtro.alternarTag(t.nome)"
+      >
+        <span class="ponto" [style.background]="filtro.estaSelecionada(t.nome) ? 'white' : t.cor"></span>
+        {{ t.nome }}
+      </button>
+    }
+  </div>
+
+  <div class="rodape">
+    <span class="contador">
+      {{ filtro.resultado().length }}
+      {{ filtro.resultado().length === 1 ? 'movimentação' : 'movimentações' }}
+    </span>
+    @if (filtro.temFiltro()) {
+      <button type="button" class="botao-link" (click)="filtro.limpar()">limpar filtros</button>
+    }
+  </div>
+</div>

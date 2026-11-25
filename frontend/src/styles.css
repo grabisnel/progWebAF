@@ -1,1 +1,243 @@
-/* You can add global styles to this file, and also import other style files */
+/* Tokens do tema: claro/escuro automático via light-dark() */
+:root {
+  color-scheme: light dark;
+
+  --fundo: light-dark(#f4f3ef, #111214);
+  --superficie: light-dark(#ffffff, #1a1c1f);
+  --superficie-2: light-dark(#f0eee8, #23262a);
+  --borda: light-dark(#e1ded6, #30343a);
+  --borda-forte: light-dark(#c9c5bb, #464b52);
+  --texto: light-dark(#1b1c1e, #ecebe7);
+  --texto-suave: light-dark(#5b5e64, #a4a8ae);
+
+  --entrada: light-dark(#1d7044, #5fcb8b);
+  --entrada-fundo: light-dark(#e7f3ec, #16271e);
+  --saida: light-dark(#b42318, #ff8b80);
+  --saida-fundo: light-dark(#fbeceb, #2c1a19);
+
+  --primario: light-dark(#1b1c1e, #ecebe7);
+  --primario-texto: light-dark(#ffffff, #111214);
+  --foco: light-dark(#2557d6, #8fb0ff);
+
+  --raio: 14px;
+  --raio-sm: 9px;
+  --sombra: 0 1px 2px light-dark(rgb(0 0 0 / 0.05), rgb(0 0 0 / 0.4));
+
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-feature-settings: 'cv11', 'ss01';
+  line-height: 1.45;
+  color: var(--texto);
+  background: var(--fundo);
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--foco);
+  outline-offset: 2px;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* Cartão base */
+.cartao {
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+}
+
+/* Campos de formulário */
+.rotulo {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--texto-suave);
+  margin-bottom: 6px;
+}
+
+.controle {
+  width: 100%;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid var(--borda-forte);
+  border-radius: var(--raio-sm);
+  background: var(--superficie);
+  transition: border-color 0.15s;
+}
+
+.controle:hover {
+  border-color: var(--texto-suave);
+}
+
+.controle:focus-visible {
+  outline: none;
+  border-color: var(--foco);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--foco) 25%, transparent);
+}
+
+.controle.invalido {
+  border-color: var(--saida);
+}
+
+.erro-campo {
+  margin-top: 6px;
+  font-size: 0.8125rem;
+  color: var(--saida);
+}
+
+/* Botões */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 42px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: var(--raio-sm);
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--primario);
+  color: var(--primario-texto);
+  transition: opacity 0.15s;
+}
+
+.botao:hover {
+  opacity: 0.88;
+}
+
+.botao:disabled {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+.botao-secundario {
+  background: transparent;
+  color: var(--texto);
+  border-color: var(--borda-forte);
+}
+
+.botao-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--texto-suave);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.botao-link:hover {
+  color: var(--texto);
+}
+
+.botao-icone {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--raio-sm);
+  background: transparent;
+  color: var(--texto-suave);
+  cursor: pointer;
+}
+
+.botao-icone:hover {
+  background: var(--superficie-2);
+  color: var(--saida);
+}
+
+/* Alternador segmentado (Entrada/Saída, Todas/Entradas/Saídas) */
+.segmentado {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: calc(var(--raio-sm) + 4px);
+  background: var(--superficie-2);
+}
+
+.segmentado button {
+  flex: 1;
+  height: 34px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: var(--raio-sm);
+  background: transparent;
+  color: var(--texto-suave);
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.segmentado button:hover {
+  color: var(--texto);
+}
+
+.segmentado button.ativo {
+  background: var(--superficie);
+  color: var(--texto);
+  box-shadow: var(--sombra), 0 0 0 1px var(--borda);
+}
+
+.segmentado button.entrada.ativo {
+  color: var(--entrada);
+}
+
+.segmentado button.saida.ativo {
+  color: var(--saida);
+}
+
+/* Badge de tag: fundo na cor da tag (todas as cores da paleta passam AA com texto branco) */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.valor-entrada {
+  color: var(--entrada);
+}
+
+.valor-saida {
+  color: var(--saida);
+}
