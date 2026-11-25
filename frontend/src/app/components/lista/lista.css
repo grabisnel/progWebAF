@@ -1,0 +1,48 @@
+.lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* A cor da borda esquerda vem da tag (definida no HTML) */
+.linha {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 8px 12px 14px;
+  border-bottom: 1px solid var(--borda);
+  border-left: 3px solid;
+}
+
+.linha:last-child {
+  border-bottom: 0;
+}
+
+.linha:hover {
+  background: var(--superficie-2);
+}
+
+.info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  min-width: 0;
+}
+
+.descricao {
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.valor {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.vazio {
+  padding: 40px 16px;
+  text-align: center;
+  color: var(--texto-suave);
+}
