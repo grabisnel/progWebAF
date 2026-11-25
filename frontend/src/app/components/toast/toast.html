@@ -1,0 +1,7 @@
+@if (mov.apagada(); as item) {
+  <div class="toast">
+    <span class="texto">Apagado: <strong>{{ item.descricao }}</strong></span>
+    <button type="button" class="desfazer" (click)="mov.desfazer()">Desfazer</button>
+    <button type="button" class="fechar" (click)="mov.fecharAviso()">✕</button>
+  </div>
+}
